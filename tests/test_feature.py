@@ -20,7 +20,7 @@ class FeatureTest(TestCase):
     def test_initialize_feature_with_default_percentage(self):
         feature_test = Feature("testing", default_percentage=100)
 
-        self.assertEquals(feature_test.percentage, 100)
+        self.assertEqual(feature_test.percentage, 100)
 
     def test_reset_settings(self):
         """ Tests calling reset_settings resets the correct
@@ -277,7 +277,7 @@ class FeatureTest(TestCase):
         """Tests calling is_visible when using string as identifier is
         correct when partially ramped.
         """
-        identifiers = list(itertools.product(string.lowercase, repeat=3))
+        identifiers = list(itertools.product(string.ascii_lowercase, repeat=3))
         total_number = len(identifiers)
         expected_percentage = .10
         self.feature_test.set_percentage(expected_percentage * 100)

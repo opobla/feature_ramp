@@ -98,7 +98,7 @@ class Feature(object):
         if not.
         """
         consistent_offset = hash(self.feature_name) % 100 if not self.feature_group_name else hash(self.feature_group_name)
-        identifier = identifier if isinstance(identifier, basestring) else str(identifier)
+        identifier = identifier if isinstance(identifier, str) else str(identifier)
         ramp_ranking = (consistent_offset + hash(identifier)) % 100
 
         return ramp_ranking < self.percentage
@@ -222,7 +222,7 @@ class Feature(object):
     @classmethod
     def _get_feature_name_from_redis_key(self, key):
         """ Returns the feature name given the namespaced key used in Redis. """
-        return key.split('.')[-1]
+        return key.decode('utf-8').split('.')[-1]
 
     @classmethod
     def _get_redis_set_key(cls):
